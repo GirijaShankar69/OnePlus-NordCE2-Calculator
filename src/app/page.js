@@ -43,14 +43,14 @@ export default function Home() {
     },
   ];
 
-  const cacluatePercentage = () => {
-    let arr = solve.split("%");
-    let x = 1;
-    for (let i = 0; i < arr.length; i++) {
-      arr[i] = arr[i] / 100;
-      setSolve(solve + "" + arr[i]);
-    }
-  };
+  // const cacluatePercentage = () => {
+  //   let arr = solve.split("%");
+  //   let x = 1;
+  //   for (let i = 0; i < arr.length; i++) {
+  //     arr[i] = arr[i] / 100;
+  //     setSolve(solve + "" + arr[i]);
+  //   }
+  // };
 
   return (
     <main className="pt-24 pb-20 flex w-full items-center justify-center h-screen bg-[#ffb515]">
@@ -99,7 +99,19 @@ export default function Home() {
               ?.map((num, index) => (
                 <button
                   onClick={() => {
+                    let arr = solve.split("");
                     if (isSolved) {
+                      if (
+                        arr[arr.length - 1] === "+" ||
+                        arr[arr.length - 1] === "-" ||
+                        arr[arr.length - 1] === "*" ||
+                        arr[arr.length - 1] === "/"
+                      ) {
+                        setCount(0);
+                        setIsSolved(false);
+                        setSolve(solve + "" + num);
+                        return;
+                      }
                       setSolve("");
                       setCount(0);
                       setIsSolved(false);
